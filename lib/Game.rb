@@ -11,12 +11,21 @@ class Game
     @status = "on going"
     @board = Board.new
     @array_of_player = []
-    player1 = Player.new("joueur1", "X")
-    player2 = Player.new("joueur2", "0")
+    puts "\nQuel est le prénom du premier joueur ?"
+    print "> "
+    name_player_1 = gets.chomp
+
+    puts "\nEt celui du deuxième ?"
+    print "> "
+    name_player_2 = gets.chomp
+
+    player1 = Player.new(name_player_1, "X")
+    player2 = Player.new(name_player_2, "0")
     @array_of_player = [player1, player2]
     @current_player = player1
   end #end of initialize
 
+ 
   def play_turn
     if @current_player == @array_of_player[0]
       @current_player = @array_of_player[1]
@@ -28,7 +37,7 @@ class Game
     puts "les lettres sont les index des lignes et les numéros sont les indexs des colonnes"
     puts "si tu fais une erreur (tu joues une case déjà joué ou une case qui n'existe pas), tu perds ton tour,"
     puts @board.show_board
-    puts "Tu veux jouer dans quelle case ?"
+    puts "#{@current_player.name} veux jouer dans quelle case ?"
     print ">"
     user_choice = gets.chomp
     @board.plateau.each do |handle|
